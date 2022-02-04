@@ -15,7 +15,7 @@ def encrypt(og_message, shifter):
     while index < len(og_message):
         alpha_to_num = abs(ord(str(og_message[index])) + shifter[index])
         if og_message[index].isalpha() and alpha_to_num > 90:
-            diff = abs(alpha_to_num - 90)
+            diff = abs(alpha_to_num - 91)
             alpha_to_num = 65 + diff
         num_to_alpha = chr(alpha_to_num)
         og_message.pop(index)
@@ -31,7 +31,7 @@ def decrypt(encrypted, shifter):
         alpha_to_num = abs(ord(str(encrypted[index])) - shifter[index])
         if encrypted[index].isalpha() and alpha_to_num < 65:
             diff = abs(ord(str(encrypted[index])) - 65)
-            alpha_to_num = 90 - abs(shifter[index] - diff)
+            alpha_to_num = 91 - abs(shifter[index] - diff)
         num_to_alpha = chr(alpha_to_num)
         encrypted.pop(index)
         encrypted.insert(index, num_to_alpha)
