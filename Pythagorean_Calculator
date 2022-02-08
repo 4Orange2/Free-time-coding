@@ -1,0 +1,23 @@
+import math
+
+def pythagorean (calc):
+    if calc == "h":
+        leg_1 = int(input("Leg 1: "))
+        leg_2 = int(input("Leg 2: "))
+        hypot = math.sqrt(leg_1 ** 2 + leg_2 ** 2)
+        return hypot
+    elif calc == "l":
+        hypot = int(input("Hypotenous: "))
+        leg = int(input("Leg: "))
+        leg = math.sqrt(hypot ** 2 - leg_2 ** 2)
+        return leg
+print("This is a pythagorean theorem calculator")
+print("---")
+times = int(input("How many times do you wan to do this? "))
+num = 0
+
+while num < times:
+    side = input("What do you want to calculate? ")
+    print(pythagorean(side))
+    print("---")
+    num += 1
