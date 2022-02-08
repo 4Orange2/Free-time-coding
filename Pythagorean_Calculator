@@ -1,15 +1,15 @@
-import math
+from math import sqrt
 
 def pythagorean (calc):
     if calc == "h":
         leg_1 = int(input("Leg 1: "))
         leg_2 = int(input("Leg 2: "))
-        hypot = math.sqrt(leg_1 ** 2 + leg_2 ** 2)
+        hypot = sqrt(leg_1 ** 2 + leg_2 ** 2)
         return hypot
     elif calc == "l":
         hypot = int(input("Hypotenous: "))
         leg = int(input("Leg: "))
-        leg = math.sqrt(hypot ** 2 - leg_2 ** 2)
+        leg = sqrt(hypot ** 2 - leg_2 ** 2)
         return leg
 print("This is a pythagorean theorem calculator")
 print("---")
