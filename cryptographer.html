@@ -1,0 +1,118 @@
+<html>
+    <title>An online cryptographer</title>
+    <script>
+        function alphabet_to_number() {
+            var index = 0;
+            var key = document.getElementById("secret").value.toLocaleUpperCase();
+            var new_key = ""
+            console.log("Making sure of code word length: ".concat(key.length));
+            while (index < key.length) {
+                var alpha_to_num = key.charCodeAt(index) - 65;
+                var char_remove = key.charAt(index);
+                new_key = new_key.concat(alpha_to_num, " ");
+                console.log("new key: ".concat(new_key));
+                index += 1;
+                console.log("Index at the end of loop: ".concat(index));
+                console.log("----");
+            }
+            var cipher = new_key.split(" ");
+            console.log("Unicode values of the cipher: ".concat(cipher));
+            console.log(Array.isArray(cipher));
+            return cipher;
+        }
+        function encrypt () {
+            var og_message = document.getElementById("text").value.toLocaleUpperCase();
+            var index = 0;
+            var shifter = alphabet_to_number().toString();
+            console.log("Shifter string: ".concat(shifter));
+            var long_shifter = shifter.repeat(shifter.length);
+            console.log("Shifter long string: ".concat(long_shifter));
+            var ready_shifter = long_shifter.substring(0, long_shifter.length - 1);
+            console.log("Shifter comma removed: ".concat(ready_shifter));
+            var encrypted = "";
+            var array_shifter = ready_shifter.split(",");
+            console.log("Unicode values of the cipher: ".concat(array_shifter));
+            console.log(Array.isArray(array_shifter));
+            while (index < og_message.length) {
+                var message_unicode = og_message.charCodeAt(index);
+                console.log("Message character: ".concat(og_message.charAt(index)))
+                console.log("Unicode of message character: ".concat(message_unicode));
+                var cipher_unicode = array_shifter.slice(index, index + 1).toString();
+                console.log("Cipher unicode: ".concat(cipher_unicode));
+                var alpha_to_num = parseInt(message_unicode) + parseInt(cipher_unicode);
+                console.log("Encrypted Unicode: ".concat(alpha_to_num));
+                while ((message_unicode >= 65 && message_unicode <= 90) && alpha_to_num > 90) {
+                    var diff = Math.abs(alpha_to_num - 91);
+                    console.log("Difference: ".concat(diff));
+                    alpha_to_num = 65 + diff;
+                    console.log("Lapped character: ".concat(alpha_to_num));
+                }
+                var num_to_alpha = String.fromCharCode(alpha_to_num);
+                console.log("Encrypted character: ".concat(num_to_alpha));
+                encrypted = encrypted.concat(num_to_alpha);
+                console.log("Encrypted message: ".concat(encrypted));
+                index += 1;
+                console.log("Index at the end of loop: ".concat(index));
+                console.log("----");
+            }
+            document.getElementById("show encrypted").innerHTML = "This is the encrypted text: ";            
+            document.getElementById("encrypted").innerHTML = encrypted;
+        }
+        
+        function decrypt() {
+            var encrypted = document.getElementById("text").value.toLocaleUpperCase();
+            console.log("This is trimmed: ".concat(encrypted))
+            var index = 0;
+            var shifter = alphabet_to_number().toString();
+            console.log("Shifter string: ".concat(shifter));
+            var long_shifter = shifter.repeat(shifter.length);
+            console.log("Shifter long string: ".concat(long_shifter));
+            var ready_shifter = long_shifter.substring(0, long_shifter.length - 1);
+            console.log("Shifter comma removed: ".concat(ready_shifter));
+            var decrypted = "";
+            var array_shifter = ready_shifter.split(",");
+            console.log("Unicode values of the cipher: ".concat(array_shifter));
+            console.log(Array.isArray(array_shifter));
+            while (index < encrypted.length) {
+                var message_unicode = encrypted.charCodeAt(index);
+                console.log("Message character: ".concat(encrypted.charAt(index)))
+                console.log("Unicode of message character: ".concat(message_unicode));
+                var cipher_unicode = array_shifter.slice(index, index + 1).toString();
+                console.log("Cipher unicode: ".concat(cipher_unicode));
+                var alpha_to_num = Math.abs(parseInt(message_unicode) - parseInt(cipher_unicode));
+                console.log("Decrypted Unicode: ".concat(alpha_to_num));
+                while ((message_unicode >= 65 && message_unicode <= 90) && alpha_to_num < 65) {
+                    var diff = Math.abs(message_unicode - 65);
+                    console.log("Difference: ".concat(diff));
+                    alpha_to_num = 91 - (Math.abs(cipher_unicode) - diff);
+                    console.log("Decyrpted character: ".concat(alpha_to_num));
+                }
+                var num_to_alpha = String.fromCharCode(alpha_to_num);
+                console.log("Decrypted character: ".concat(num_to_alpha));
+                decrypted = decrypted.concat(num_to_alpha);
+                console.log("Decrypted message: ".concat(decrypted));
+                index += 1;
+                console.log("Index at the end of loop: ".concat(index));
+                console.log("----");
+            }
+            document.getElementById("show decrypted").innerHTML = "This is the decrypted text: ";
+            document.getElementById("decrypted").innerHTML = decrypted;
+        }
+    </script>
+    
+    <body>
+        <h1>Online Cryptographer</h1>
+        <br/>Enter your code word:
+        <input type="text" id="secret" value="MySecret"/>
+        <br/>
+        Enter your text:
+        <input type="text" id="text" value="This is my text!"/>
+        <br/><button onclick="encrypt()">Encrypt text</button>        
+        <br/><button onclick="decrypt()">Decrypt text</button>
+        <br/>
+        <p id="show encrypted"></p>
+        <p id="encrypted"></p>
+        <p id="show decrypted"></p>
+        <p id="decrypted"></p>
+    </body>
+</html>
