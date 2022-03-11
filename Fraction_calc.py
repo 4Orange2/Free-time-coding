@@ -1,18 +1,32 @@
 # this is a fraction calculator
-denom = list(input("Denominators: ").split(","))
-numer = list(input("Numerators: ").split(","))
-def get_lcm(values):
-    ordered_denom = []
-    if denom[1] != denom[1]:
-        while exit < len(values):
-            greatest = denominator.pop(max(denominator))
-            print(greatest)
-        while(True):
-           if (greater % x == 0) and (greater % y == 0):
-               lcm = greater
-               break
-           greater += 1
-           exit += 1
-    #elif denom[1] == denom[1]:
-    
-print(numerator)
+denominator = list(input("Denominators: ").split(" "))
+#numerator = list(input("Numerators: ").split(" "))
+print(denominator)
+#print(numerator)
+
+def get_lcm(denom):
+    denom.sort()
+    index = 0
+    multiple = int(denom[0])
+    static_multiple = multiple
+    print("this is the smallest number: " + str(multiple))
+    print("---")
+    exit = 0
+    while exit < (len(denom) - 1):
+        lcm = (multiple % static_multiple) == 0 and (
+            multiple % int(denom[index + 1])) == 0
+        print("this is the new number: " + denom[index + 1])
+        print("this is multiple: " + str(multiple))
+        print(lcm)
+        print("---")
+        if lcm == False:
+            multiple += 1
+        elif lcm == True:
+            static_multiple = multiple
+            index += 1
+            exit += 1
+        else:
+            print("error")
+    return multiple
+
+print(get_lcm(denominator))
