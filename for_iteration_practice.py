@@ -160,6 +160,8 @@ def postal_code(entry):
     condition = False
     nums = ""
     alpha = ""
+    error = ("Error - invalid syntax. Ensure that your postal code is in the A9A 9A9 form. "
+            "Where 9 represents a digit and A represents an uppercase letter.")
     if len(entry) == 7 and entry[3] == " ":
         stripped_entry = entry.replace(" ", "")
         print("This is the stripped entry: " + stripped_entry)
@@ -169,13 +171,17 @@ def postal_code(entry):
         print("These are the numbers: " + odd)
         uppercase = all_upper(even)
         digit = all_digit(odd)
-        if not digit or not uppercase:
-            return "Error - invalid syntax. Ensure that your postal code is in the A9A 9A9 form." \ 
-            "Where 9 represents a digit and A represents an upper-case letter."
-        else:
+        if digit and uppercase:
             print("---")
             return "This is a valid postal code"
+        else:
+            return error
     else:
-        return "Error - invalid syntax. Ensure that your postal code is in the A9A 9A9 form." \ 
-            "Where 9 represents a digit and A represents an upper-case letter."
+        return error
 print(postal_code("A9A 9A9"))
+print("------")
+print(postal_code("A999A9"))
+print("------")
+print(postal_code("A9AAA9"))
+print("------")
+print(postal_code("A9A9A9"))
