@@ -1,5 +1,5 @@
 # Exercise 1 - Use a for loop to write a function has_digit that consumes a nonempty string
-and determines whether or not there is at least one digit in the string, producing True if so and False otherwise.
+# and determines whether or not there is at least one digit in the string, producing True if so and False otherwise.
 
 def has_digit(string):
     if string == "":
