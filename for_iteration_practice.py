@@ -170,11 +170,12 @@ def postal_code(entry):
         uppercase = all_upper(even)
         digit = all_digit(odd)
         if not digit or not uppercase:
-            return "Error - invalid syntax. Ensure that your postal code is in the A9A 9A9 form. Where 9 represents a digit and A represents an upper-case letter."
+            return "Error - invalid syntax. Ensure that your postal code is in the A9A 9A9 form." \ 
+            "Where 9 represents a digit and A represents an upper-case letter."
         else:
-            postal_code = list(merge_string(even, odd))
-            postal_code.insert(3, " ")
-            str_pc = ''.join(postal_code)
             print("---")
-            return str_pc
+            return "This is a valid postal code"
+    else:
+        return "Error - invalid syntax. Ensure that your postal code is in the A9A 9A9 form." \ 
+            "Where 9 represents a digit and A represents an upper-case letter."
 print(postal_code("A9A 9A9"))
