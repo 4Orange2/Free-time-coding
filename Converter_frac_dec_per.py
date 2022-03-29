@@ -30,7 +30,7 @@ index = 0
 if user == "frac":
     handler_string = og[index]
     if handler_string.count("%") > 0:
-        handler_string.replace("%", "")
+        handler_string = handler_string.replace("%", "")
         frac = float(handler_string)
         fraction = simplify(frac, 100)
     else:
