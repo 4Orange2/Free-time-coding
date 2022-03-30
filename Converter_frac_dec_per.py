@@ -25,7 +25,7 @@ def simplify(numer, denom):
                 print("error")
     return (str(numer) + "/" + str(denom))
 
-def converter(og, index, user):
+def convert(og, index, user):
     if str(user[index]) == "frac":
         handler_string = og[index]
         if handler_string.count("%") > 0:
@@ -40,20 +40,21 @@ def converter(og, index, user):
     elif str(user[index]) == "dec":
         handler_string = og[index]
         if handler_string.count("/") > 0:
-            handler_string.replace("/", "")
-            dec = handler_string[0] / handler_string[1]
+            handler_string = handler_string.replace("/", "")
+            dec = int(handler_string[0]) / int(handler_string[1])
         else:
             handler_string = handler_string.replace("%", "")
-            dec = handler_string[:2] / 100
+            dec = int(handler_string[:2]) / 100
         return dec
     elif str(user[index]) == "per":
         handler_string = og[index]
         if handler_string.count("/") > 0:
             handler_string = handler_string.replace("/", "")
-            per = (handler_string[0] / handler_string[1]) * 100
+            per = int(handler_string[0]) / int(handler_string[1]) * 100
         else:
-            per = handler_string[:2] * 100
+            per = int(handler_string[:2]) * 100
         return (str(per) + "%")
 
 for index in range(len(og)):
-    convert(og, index, user)
+    converted = convert(og, index, user)
+    print(converted)
