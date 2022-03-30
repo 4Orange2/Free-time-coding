@@ -1,7 +1,7 @@
 # This is a fractions, decimals, and percentage convertor
 original = input("Input: ")
 og = original.split(" ")
-user = input("To what? ")
+user = (input("To what? ").split(" "))
 
 def simplify(numer, denom):
     exit = 0
@@ -25,24 +25,32 @@ def simplify(numer, denom):
                 print("error")
     return (str(numer) + "/" + str(denom))
 
-#for i in range(len(og)):
-index = 0
-if user == "frac":
-    handler_string = og[index]
-    if handler_string.count("%") > 0:
-        handler_string = handler_string.replace("%", "")
-        frac = float(handler_string)
-        fraction = simplify(frac, 100)
-    else:
-        dec = float(og[index]) * 100
-        fraction = simplify(dec, 100)
-    print(fraction)
-'''
-    elif user == "dec":
+for index in range(len(og)):
+    if str(user[index]) == "frac":
+        handler_string = og[index]
+        if handler_string.count("%") > 0:
+            handler_string = handler_string.replace("%", "")
+            frac = float(handler_string)
+            fraction = simplify(frac, 100)
+        else:
+            dec = float(og[index]) * 100
+            fraction = simplify(dec, 100)
+        print(fraction)
+
+    elif str(user[index]) == "dec":
         handler_string = og[index]
         if handler_string.count("/") > 0:
             handler_string.replace("/", "")
-            dec = handler_string[0] / handler_string[1]
-            
-    elif user == "per":
-'''        
+            dec = handler_string[index] / handler_string[index + 1]
+        else:
+            handler_string = handler_string.replace("%", "")
+            dec = handler_string[index] / handler_string[index + 1]
+        print(dec)
+    elif str(user[index]) == "per":
+        handler_string = og[index]
+        if handler_string.count("/") > 0:
+            handler_string = handler_string.replace("/", "")
+            per = (handler_string[index] / handler_string[index + 1]) * 100
+        else:
+            per = (handler_string[index] / handler_string[index + 1]) * 100
+        print(str(per) + "%")
