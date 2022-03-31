@@ -34,7 +34,7 @@ def convert(og, index, user):
             frac = float(handler_string)
             fraction = simplify(frac, 100)
         else:
-            dec = float(og[index]) * 100
+            dec = int(handler_string[handler_string.index(".") + 1:])
             fraction = simplify(dec, 100)
         return fraction
 
