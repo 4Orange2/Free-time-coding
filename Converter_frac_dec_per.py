@@ -41,7 +41,7 @@ def convert(og, index, user):
     elif str(user[index]) == "dec":
         handler_string = og[index]
         if handler_string.count("/") > 0:
-            handler_string = handler_string.replace("/", "")
+            handler_string = handler_string.split("/")
             dec = int(handler_string[0]) / int(handler_string[1])
         else:
             handler_string = handler_string.replace("%", "")
