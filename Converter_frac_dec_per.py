@@ -1,10 +1,9 @@
-'''
 # This is a fractions, decimals, and percentage convertor
 # Remember to put "frac", "dec", or "per"
 original = input("Input: ")
 og = original.split(" ")
 user = (input("To what? ").split(" "))
-'''
+
 def simplify(numer, denom):
     exit = 0
     if numer > denom:
