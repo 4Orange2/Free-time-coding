@@ -1,6 +1,29 @@
 # this is a fraction calculator
-numerator = list(input("Numerators: ").split(" "))
-denominator = list(input("Denominators: ").split(" "))
+
+def get_list_frac(equation):
+    index = 1
+    fractions = []
+    while index <= len(equation):
+        print("This is the index {}".format(index))
+        fractions += equation[index]
+        print("This is the equ {}".format())
+        index += 2
+    return fractions
+
+def separate_frac(fracs, denom=False):
+    element = 2 if denom else 1
+    print(element)
+    numbers = []
+    while index <= len(fracs):
+        separated = fracs[index].split("/")
+        numbers += separated[element]
+        index += 2
+    return numbers
+
+equation = (input("Type the equation here: ").split(" "))
+fractions = get_list_frac(equation)
+numerator = separate_frac(fractions)
+denominator = separate_frac(fractions, denom=True)
 operation = input("What operation would you like to use? ").lower()
 print("numerators: {}".format(numerator))
 print("denominators: {}".format(denominator))
