@@ -1,23 +1,23 @@
 # this is a fraction calculator
 
 def get_list_frac(equation):
-    print("get_list_frac:")
+    #print("get_list_frac:")
     index = 0
     fractions = []
-    print("equation: {}".format(equation))
-    print("-------")
+    #print("equation: {}".format(equation))
+    #print("-------")
     while index <= len(equation):
-        print("This is the index: {}".format(index))
+        #print("This is the index: {}".format(index))
         new_frac = str(equation[index])
-        print(new_frac)
+        #print(new_frac)
         fractions.append(new_frac)
-        print("Solved equation: {}".format(fractions))
+        #print("Solved equation: {}".format(fractions))
         index += 2
-        print("--")
+        #print("--")
     return fractions
 
 def separate_frac(fracs, denom=False):
-    print("separate_frac:")
+    #print("separate_frac:")
     numbers = []
     index = 0
     identify_face = "denominators" if denom else "numerators"
@@ -25,20 +25,20 @@ def separate_frac(fracs, denom=False):
         split_fracs = fracs[index].split("/")
         new_number = split_fracs[1] if denom else split_fracs[0]
         numbers.append(new_number)
-        print("These are the {}: {}".format(identify_face, numbers))
+        #print("These are the {}: {}".format(identify_face, numbers))
         index += 1
-        print("This is index: {}".format(index))
+        #print("This is index: {}".format(index))
     return numbers
 
 def get_operators(equation):
-    print("get_operators:")
+    #print("get_operators:")
     operators = []
     index = 1
     while index < len(equation):
         operators += equation[index]
-        print("These are the operators: {}".format(operators))
+        #print("These are the operators: {}".format(operators))
         index += 2
-        print("This is index: {}".format(index))
+        #print("This is index: {}".format(index))
     return operators
 
 def simplify(numer, denom):
@@ -48,19 +48,19 @@ def simplify(numer, denom):
     else:
         factor = denom
     while exit < 1:
-            gcf = (numer % factor) == 0 and (
-                denom % factor) == 0
-            #print("this is the new  factor: " + str(factor))
-            #print(gcf)
-            #print("---")
-            if gcf == False:
-                factor -= 1
-            elif gcf == True:
-                numer = int(numer / factor)
-                denom = int(denom / factor)
-                exit += 1
-            else:
-                print("error")
+        gcf = (numer % factor) == 0 and (
+            denom % factor) == 0
+        #print("this is the new  factor: " + str(factor))
+        #print(gcf)
+        #print("---")
+        if gcf == False:
+            factor -= 1
+        elif gcf == True:
+            numer = int(numer / factor)
+            denom = int(denom / factor)
+            exit += 1
+        else:
+            print("error")
     return (str(numer) + "/" + str(denom))
 
 def get_lcm(denom):
@@ -88,67 +88,62 @@ def get_lcm(denom):
     return multiple
 
 def add(numers, denoms, index):
-    print(denoms)
+    #print(denoms)
     lcm = get_lcm(denoms)
-    print("LCM: {}".format(lcm))
+    #print("LCM: {}".format(lcm))
     factor_for_numer_1 = lcm / int(denoms[index])
     factor_for_numer_2 = lcm / int(denoms[index + 1])
-    print(int(denoms[index]))
-    print(denoms)
+    #print(int(denoms[index]))
+    #print(denoms)
     #print("Multiplying factor: {}".format(factor_for_numer))
     new_numer_1 = factor_for_numer_1 * int(numers[index])
-    print("1st numer: {}".format(new_numer_1))
+    #print("1st numer: {}".format(new_numer_1))
     new_numer_2 = factor_for_numer_2 * int(numers[index + 1])
-    print("2nd numer: {}".format(new_numer_2))
+    #print("2nd numer: {}".format(new_numer_2))
     sum_of_numer = new_numer_1 + new_numer_2
     simple_add = simplify(sum_of_numer, lcm)
     return simple_add
 
 def subtract(numer, denom, index):
     lcm = get_lcm(denom)
-    print("LCM: {}".format(lcm))
+    #print("LCM: {}".format(lcm))
     factor_for_numer = lcm / int(denom[0])
     new_numer_1 = factor_for_numer * int(numers[index])
-    print("1st numer: {}".format(new_numer_1))
+    #print("1st numer: {}".format(new_numer_1))
     new_numer_2 = factor_for_numer * int(numers[index + 1])
-    print("2nd numer: {}".format(new_numer_2))
+    #print("2nd numer: {}".format(new_numer_2))
     diff_of_numer = new_numer_1 - new_numer_2
     simple_subt = simplify(subtraction, lcm)
     return simple_subt
 
 def multiply(numer, denom, index):
     product_numers = int(numer[index]) * int(numer[index + 1])
-    print("multiplied numers: {}".format(product_numers))
+    #print("multiplied numers: {}".format(product_numers))
     product_denoms = int(denom[index]) * int(denom[index + 1])
-    print("multiplied denoms: {}".format(product_denoms))
+    #print("multiplied denoms: {}".format(product_denoms))
     multiplied_fraction = simplify(product_numers, product_denoms)
     return multiplied_fraction
 
 def divide(numer, denom, index):
     product_numer = int(numer[index]) * int(denom[index + 1])
-    print("multiplied numer and denom: {}".format(product_numers))
+    #print("multiplied numer and denom: {}".format(product_numers))
     product_denom = int(denom[index]) * int(numer[index + 1])
-    print("multiplied denom and numer: {}".format(product_denoms))
+    #print("multiplied denom and numer: {}".format(product_denoms))
     divided_fraction = simplify(product_numer, product_denom)
     return divided_fraction
 
 def solve(numers, denoms, operator):
-    print("---")
-    op_index = 0
-    #for index in range(len(numers)):
-    #print(index)
-    index = 0
-    if operator[op_index] == "/" or operator[op_index] == "*":
-        if operator[op_index] == "/":
-            answer = divide(numers, denoms, index)
-        else:
-            answer = multiply(numers, denoms, index)
-    elif operator[op_index] == "+" or operator[op_index] == "-":
-        if operator[op_index] == "+":
-            answer = add(numers, denoms, index)
-        else:
-            answer = subtract(numers, denoms, index)
-        #op_index += 2
+    for index in range(len(numers)):
+        if operator[index] == "/" or operator[index] == "*":
+            if operator[index] == "/":
+                answer = divide(numers, denoms, index)
+            else:
+                answer = multiply(numers, denoms, index)
+        elif operator[index] == "+" or operator[index] == "-":
+            if operator[index] == "+":
+                answer = add(numers, denoms, index)
+            else:
+                answer = subtract(numers, denoms, index)
     return answer
 
 equation = (input("Type the equation here: ").split(" "))
