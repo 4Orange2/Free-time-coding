@@ -132,18 +132,34 @@ def divide(numer, denom, index):
     divided_fraction = simplify(product_numer, product_denom)
     return divided_fraction
 
+def filter_operators(operators):
+    DM = ['/', '*']
+    return True if DM in operators else False
+
+def order_operators(operators):
+    ordered_operators = []
+    for i in range(len(operators)):
+        DM = ['/', '*']
+        ordered_operators += operators.index(DM)
+    for i in range(len(operators)):
+        AS = ['+', '-']
+        ordered_operators += operators.index(AS)
+    return ordered_operators
+
 def solve(numers, denoms, operator):
-    for index in range(len(numers)):
+    answer = ""
+    for index in range(len(numers) - 1):
         if operator[index] == "/" or operator[index] == "*":
             if operator[index] == "/":
-                answer = divide(numers, denoms, index)
+                answer += divide(numers, denoms, operator[index])
             else:
-                answer = multiply(numers, denoms, index)
+                answer += multiply(numers, denoms, operator[index])
         elif operator[index] == "+" or operator[index] == "-":
             if operator[index] == "+":
-                answer = add(numers, denoms, index)
+                answer += add(numers, denoms, operator[index])
             else:
-                answer = subtract(numers, denoms, index)
+                answer += subtract(numers, denoms, operator[index])
+        exit += 1
     return answer
 
 equation = (input("Type the equation here: ").split(" "))
@@ -151,5 +167,6 @@ fractions = get_list_frac(equation)
 numerators = separate_frac(fractions) # creates a list of numerators
 denominators = separate_frac(fractions, denom=True) # creates a list of denominators
 operators = get_operators(equation) # creates a list of operators
+ordered_operators_list = order_operators(operators)
 
-print(solve(numerators, denominators, operators))
+print(solve(numerators, denominators, ordered_operators_list)) 
