@@ -11,7 +11,7 @@ def get_list_frac(equation):
         new_frac = str(equation[index])
         print(new_frac)
         fractions.append(new_frac)
-        print("Solved equation: {}".format(fractions))
+        print("All fractions: {}".format(fractions))
         index += 2
         print("--")
     return fractions
@@ -133,25 +133,31 @@ def divide(numer, denom, index):
     divided_fraction = simplify(product_numer, product_denom)
     return divided_fraction
 
-def solve(numers, denoms, operators):
+def solve(equation):
+    fractions = get_list_frac(equation)
+    numers = separate_frac(fractions) # creates a list of numerators
+    denoms = separate_frac(fractions, denom=True) # creates a list of denominators
+    operators = get_operators(equation) # creates a list of operators
     answer = ""
     for index in range(len(numers) - 1):
         if operators[index] == "/" or operators[index] == "*":
             if operators[index] == "/":
-                answer += str(divide(numers, denoms, index)) + "/"
+                answer += str(divide(numers, denoms, index)) + " / "
             else:
-                answer += str(multiply(numers, denoms, index)) + "*"
+                answer += str(multiply(numers, denoms, index)) + " * "
         elif operators[index] == "+" or operators[index] == "-":
             if operators[index] == "+":
-                answer += add(numers, denoms, index) + "+"
+                answer += add(numers, denoms, index) + " + "
             else:
-                answer += subtract(numers, denoms, index) + "-"
-    return answer
+                answer += subtract(numers, denoms, index) + " - "
+    answer_list = answer.split(" ")
+    print(answer_list)
+    if len(answer_list) > 2:
+        for i in range(2):
+            answer_list.pop()
+        print(answer_list)
+        solve(answer_list)
+    return answer_list
 
 equation = (input("Type the equation here: ").split(" "))
-fractions = get_list_frac(equation)
-numerators = separate_frac(fractions) # creates a list of numerators
-denominators = separate_frac(fractions, denom=True) # creates a list of denominators
-operators = get_operators(equation) # creates a list of operators
-
-print(solve(numerators, denominators, operators))
+print(solve(equation))
