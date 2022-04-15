@@ -64,7 +64,7 @@ def simplify(numer, denom):
     return (str(numer) + "/" + str(denom))
 
 def get_lcm(denom):
-    denom.sort(reverse=True)
+    denom.sort()
     index = 0
     multiple = int(denom[0])
     static_multiple = multiple
@@ -91,9 +91,11 @@ def add(numers, denoms, index):
     print(denoms)
     lcm = get_lcm(denoms)
     print("LCM: {}".format(lcm))
-    factor_for_numer_1 = lcm / int(denoms[index])
-    factor_for_numer_2 = lcm / int(denoms[index + 1])
+    factor_for_numer_1 = int(denoms[index]) / lcm
+    factor_for_numer_2 = int(denoms[index + 1]) / lcm
+    print("this is the first denominator: ")
     print(int(denoms[index]))
+    print("all denominators: ")
     print(denoms)
     #print("Multiplying factor: {}".format(factor_for_numer))
     new_numer_1 = factor_for_numer_1 * int(numers[index])
@@ -139,7 +141,8 @@ def solve(equation):
     denoms = separate_frac(fractions, denom=True) # creates a list of denominators
     operators = get_operators(equation) # creates a list of operators
     answer = ""
-    for index in range(len(numers) - 1):
+    index = 0
+    while index < (len(numers) - 1):
         if operators[index] == "/" or operators[index] == "*":
             if operators[index] == "/":
                 answer += str(divide(numers, denoms, index)) + " / "
@@ -150,6 +153,7 @@ def solve(equation):
                 answer += add(numers, denoms, index) + " + "
             else:
                 answer += subtract(numers, denoms, index) + " - "
+        index += 2
     answer_list = answer.split(" ")
     print(answer_list)
     if len(answer_list) > 2:
