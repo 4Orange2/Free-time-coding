@@ -60,8 +60,6 @@ peace_sign = group [
 stampBackground = rgb 127 147 194
 stamp = group 
   [ rect 32 40 |> filled white
-          |> subtract ( group ( verticalPerf -16 ++ verticalPerf 16 ++ horizPerf 20 ++ horizPerf -20)
-               )
   , rect 26 34 |> filled stampBackground
   , text "Waterloo" |> size 4 |> centered |> filled black |> move (0,13.25)
   , text "Ontario" |> size 4 |> centered |> filled black |> move (0,-16.25)
