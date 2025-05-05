@@ -26,18 +26,7 @@ mouth_x = 0
  
 myShapes model =
   [
-  animal_animation model 0 lion
-  |> move(0, model.time * (-50))
-  
-  , animal_animation model 1 frog
-  |> move(0, (model.time - 4) * (-50))
-  
-  , animal_animation model 2 sheep
-  |> move(0, (model.time - 8) * (-50))
-  
-  
-  
-  , rect 20 20
+  rect 20 20
   |> filled red
   |> move(0,0)
   |> scale (abs (sin model.time*50))
@@ -51,18 +40,16 @@ myShapes model =
   |> move(-140, 80)
   |> scale 0.65
   , textanimation model 0 "Once upon a time" 45
-  , textanimation model 1 "There was a lion" 30
-  , textanimation model 2 "A frog" 15
-  , textanimation model 3 "A sheep" 0
-  , textanimation model 4 "A bird" -15
+  , textanimation model 0.5 "There was a lion" 30
+  , animal_animation model 1 lion
+  , textanimation model 1.5 "A frog" 15
+  , animal_animation model 2 frog
+  , textanimation model 2.5 "A sheep" 0
+  , animal_animation model 3 sheep
+  , textanimation model 3.5 "A bird" -15
   , animal_animation model 4 bird
-  |> move(0, (model.time - 12) * (-50))
-  |> 
-  , textanimation model 5 "And a panther" -30
-  , textanimation model 6 "And they all lived happily ever after" -45
-  , textanimation model 7 "THE END" -60
-
-
+  , textanimation model 4.5 "And they all lived happily ever after" -30
+  , textanimation model 5 "THE END" -45
   ]
  
 panther = group [ 
@@ -406,7 +393,7 @@ textanimation model counter this_is_text y_axis = group [
   then
   text this_is_text
     |> centered
-    |> filled green
+    |> filled red
     |> move(0, y_axis)
   else
   group []
@@ -414,13 +401,13 @@ textanimation model counter this_is_text y_axis = group [
   
 animal_animation model counter this_is_animal = group [ 
   if
-  model.time > counter * 4 
+  (model.time > counter * 4) && (model.time < (counter+1)*4)
   then
   this_is_animal
-  else if
-  model.time > counter * 2 * 4
+  else if 
+  model.time > ((counter+1)*4)
   then
-  this_is_animal
+  group []
   else
   group []
  ]
