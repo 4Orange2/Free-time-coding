@@ -1,1 +1,1 @@
-# This is where I keep my personal code
+# My personal code from middle school and early high school
